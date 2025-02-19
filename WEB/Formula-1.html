@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formula-1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="изображения/LOGO.webp" alt='width='50px' height='50px''> <!-- Логотип сайта -->
+        <nav>
+            <a href="Glavnaya.html">Главная</a>
+            <a href="Chempionaty.html">Чемпионаты</a>
+            <a href="Spravka.html">Справка</a>
+            <a href="map.html" class="a">Карта</a>
+        </nav>
+    </header>
+<py-script> import requests
+from bs4 import BeautifulSoup
+
+# URL источника данных
+source_url = 'https://example.com/source_page'
+
+# Получаем HTML-код страницы
+response = requests.get(source_url)
+
+if response.status_code == 200:
+    # Парсим HTML с помощью BeautifulSoup
+    soup = BeautifulSoup(response.text, 'html.parser')
+    
+    # Пример извлечения всех заголовков <h1>
+    headings = soup.find_all('h1')
+    
+    for heading in headings:
+        print(heading.text)  # Выводим текст заголовка
+else:
+    print(f'Ошибка при получении данных: {response.status_code}')</py-script>
+<table style="border: 2px; color:black">
+    <tbody>
+        <tr>
+            <th>Пилот</th>
+            <th>гонка</th>
+            <th></th>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

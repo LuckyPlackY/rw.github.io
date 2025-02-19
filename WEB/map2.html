@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Крупные гоночные трассы</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style> #map { height: 600px; width: 100%; } </style>
+</head>
+<body>
+    <div id="map"></div>
+    
+    <!-- Подключаем Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    
+    <script>
+        // Инициализация карты
+        const map = L.map('map').setView([48, 16], 3);
+
+        // Добавляем слой тайлов
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Массивы с данными о трассах
+        const russianTracks = [
+            { name: 'Сочи Автодром', location: [43.4075, 39.9611], description: 'Автодром в Сочи, место проведения Гран-при России Формулы-1.' },
+            { name: 'Московское кольцо', location: [55.7558, 37.6173], description: 'Один из главных автодромов России, расположен недалеко от Москвы.' },
+            { name: 'Казань Ринг', location: [55.7850, 49.1233], description: 'Автодром в Казани, используемый для различных автомобильных соревнований.' },
+            { name: 'Смоленское кольцо', location: [54.7583, 31.9333], description: 'Кольцевой трек в Смоленской области, популярный среди любителей автоспорта.' }
+        ];
+
+        const worldTracks = [
+            { name: 'Circuit de Spa-Francorchamps', location: [50.4408, 5.9697], description: 'Одна из самых известных и сложных трасс в мире, расположена в Бельгии.' },
+            { name: 'Monza Circuit', location: [45.6156, 9.2811], description: 'Домашний автодром итальянского Гран-при Формулы-1, находится в Италии.' },
+            { name: 'Silverstone Circuit', location: [52.0797, -1.0181], description: 'Место проведения британского Гран-при Формулы-1, расположено в Великобритании.' },
+            { name: 'Suzuka International Racing Course', location: [34.8433, 136.5420], description: 'Знаменитая японская трасса, известна своими сложными поворотами.' },
+            { name: 'Nürburgring Nordschleife', location: [50.3361, 6.9467], description: 'Легендарная немецкая трасса, одна из самых длинных и сложных в мире.' },
+            { name: 'Circuit of the Americas', location: [30.1343, -97.6400], description: 'Современная трасса в США, принимает гонки Формулы-1 и другие международные события.' },
+            { name: 'Interlagos Circuit', location: [-23.7028, -46.6981], description: 'Трасса в Бразилии, где проводятся бразильские этапы гонок.' },
+            { name: 'Le Mans Circuit', location: [47.9417, 0.2125], description: 'Место проведения легендарных 24 часов Ле-Мана во Франции.' }
+        ];
+
+        // Функция для добавления маркера и всплывающего окна
+        function addMarker(track) {
+            const marker = L.marker(track.location).addTo(map);
+            marker.bindPopup(`
+                <strong>${track.name}</strong><br>
+                ${track.description}
+            `);
+        }
+
+        // Проход по массивам и добавление маркеров
+        russianTracks.forEach(addMarker);
