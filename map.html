@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Интерактивная карта</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <style> #mapid { height: 700px; width: 100%; } </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="изображения/LOGO.webp" alt='width='50px' height='50px''> <!-- Логотип сайта -->
+        <nav>
+            <a href="Glavnaya.html">Главная</a>
+            <a href="Chempionaty.html">Чемпионаты</a>
+            <a href="Spravka.html">Справка</a>
+            <a href="map.html" class="a">Карта</a>
+        </nav>
+        </header>
+<div id="mapid"></div>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script> 
+    var map = L.map('mapid').setView([55.751244, 37.618423], 4); 
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+     var raceTracks = [ { lat: 50.32658, lng: 6.9654823, name:'Нюрбургринг', info:'Трасса Нюрбургринг, Германия' },{ lat: 43.71234, lng:7.400356, name:'Монако', info:'Трасса Ф-1 в Монако'}, { lat: 59.921278, lng: 30.338937, name: 'Санкт-Петербургская трасса', info: 'Гоночная трасса в Санкт-Петербурге' }, { lat: 43.41667, lng: 40.000548485, name: 'Трасса в Сочи', info: 'Трасса в Сочи' }, { lat: 51.348015, lng: -0.190625, name: 'Сильверстоун', info: 'Британский автодром Сильверстоун' }, { lat: 44.84208, lng: 10.83413, name: 'Монца', info: 'Итальянский автодром Монца' } ];
+     raceTracks.forEach(function (track) { var marker = L.marker([track.lat, track.lng]).addTo(map) .bindPopup('<b>' + track.name + '</b><br>' + track.info; <a href="Italy.html">); }); 
+</script>
+</body>
+</html>
